@@ -314,13 +314,7 @@ fn call_without_abi_preserves_raw_result() {
     add_mock_profile(dir.path(), &url);
 
     sdkt_isolated(dir.path())
-        .args([
-            "call",
-            CONTRACT_ID,
-            "hello",
-            "--network-profile",
-            "mocknet",
-        ])
+        .args(["call", CONTRACT_ID, "hello", "--network-profile", "mocknet"])
         .assert()
         .success()
         .stdout(predicate::str::contains("u32(42)").not());
